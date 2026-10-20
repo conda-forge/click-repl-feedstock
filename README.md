@@ -192,5 +192,6 @@ Feedstock Maintainers
 =====================
 
 * [@izahn](https://github.com/izahn/)
+* [@jsmolic](https://github.com/jsmolic/)
 * [@rxm7706](https://github.com/rxm7706/)
 
