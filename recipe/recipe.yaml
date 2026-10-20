@@ -1,31 +1,32 @@
 schema_version: 1
 
 context:
-  name: click-repl
-  version: "0.3.0"
+  version: 0.4.1
 
 package:
-  name: ${{ name|lower }}
+  name: click-repl
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
-  sha256: 17849c23dba3d667247dc4defe1757fff98694e90fe37474f3feebb69ced26a9
+- url: https://files.pythonhosted.org/packages/source/c/click-repl/click_repl-${{ version }}.tar.gz
+  sha256: c32a1cf6f95e5bd6e92076f81ce24eafd33f2f0ffb0135887e335b8e446d1c0b
 
 build:
-  number: 1
+  number: 0
   noarch: python
-  script: ${{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv
+  script: ${{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
     - python ${{ python_min }}.*
     - pip
+    - setuptools
+    - wheel
   run:
-    - click
-    - prompt_toolkit
+    - click <9.0,>=7.0
+    - prompt_toolkit >=3.0.36
+    - typing-extensions >=4.7.0
     - python >=${{ python_min }}
-    - six
 
 tests:
   - python:
