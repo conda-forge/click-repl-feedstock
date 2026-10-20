@@ -1,0 +1,56 @@
+schema_version: 1
+
+context:
+  version: 0.4.1
+
+package:
+  name: click-repl
+  version: ${{ version }}
+
+source:
+- url: https://files.pythonhosted.org/packages/source/c/click-repl/click_repl-${{ version }}.tar.gz
+  sha256: c32a1cf6f95e5bd6e92076f81ce24eafd33f2f0ffb0135887e335b8e446d1c0b
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+    - wheel
+  run:
+    - click <9.0,>=7.0
+    - prompt_toolkit >=3.0.36
+    - typing-extensions >=4.7.0
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - click_repl
+      pip_check: false
+      python_version:
+        - ${{ python_min }}.*
+        - '*'
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: REPL plugin for Click
+  description: |
+    click-repl turns a click-based application into a REPL, enabling
+    multiple commands to be executed in single session, with a single
+    shared context. Supports tab completion and command history.
+
+
+  homepage: https://github.com/untitaker/click-repl
+
+extra:
+  recipe-maintainers:
+    - rxm7706
+    - izahn
+    - jsmolic
